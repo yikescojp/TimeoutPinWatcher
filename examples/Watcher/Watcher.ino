@@ -3,7 +3,7 @@
 #define SENSOR_PIN 2
 #define LED_PIN 13
 
-PinWatcher watcher;
+TimeoutPinWatcher watcher;
 
 void setup() {
   pinMode(SENSOR_PIN, INPUT_PULLUP);

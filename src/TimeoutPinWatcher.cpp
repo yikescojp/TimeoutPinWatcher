@@ -1,12 +1,12 @@
 #include <Arduino.h>
-#include "PinWatcher.h"
+#include "TimeoutPinWatcher.h"
 
-PinWatcher::PinWatcher() {
+TimeoutPinWatcher::TimeoutPinWatcher() {
   _lastValue = -1;
   _currentValue = -1;
 }
 
-void PinWatcher::attach(int pin, pin_watcher_callback callback, int type) {
+void TimeoutPinWatcher::attach(int pin, timeout_pin_watcher_callback callback, int type) {
   _pin = pin;
   _callback = callback;
   _type = type;
@@ -14,19 +14,19 @@ void PinWatcher::attach(int pin, pin_watcher_callback callback, int type) {
   _lasttime = 0;
 }
 
-void PinWatcher::attachDigital(int pin, pin_watcher_callback callback) {
+void TimeoutPinWatcher::attachDigital(int pin, timeout_pin_watcher_callback callback) {
   attach(pin, callback, DIGITAL);
 }
 
-void PinWatcher::attachAnalog(int pin, pin_watcher_callback callback) {
+void TimeoutPinWatcher::attachAnalog(int pin, timeout_pin_watcher_callback callback) {
   attach(pin, callback, ANALOG);
 }
 
-uint32_t PinWatcher::setTimeout(uint32_t timeout) {
+uint32_t TimeoutPinWatcher::setTimeout(uint32_t timeout) {
   return _timeout = timeout;
 }
 
-void PinWatcher::run() {
+void TimeoutPinWatcher::run() {
   if (millis() - _lasttime < _timeout) return;
   _lasttime = millis();
   
