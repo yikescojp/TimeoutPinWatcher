@@ -1,5 +1,5 @@
-#ifndef PinWatcher_h
-#define PinWatcher_h
+#ifndef TimeoutPinWatcher_h
+#define TimeoutPinWatcher_h
 
 typedef void (*timeout_pin_watcher_callback)(void);
 
